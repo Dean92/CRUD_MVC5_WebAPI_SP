@@ -15,10 +15,10 @@ namespace CRUD_MVC5_WebAPI_SP
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class db1Entities : DbContext
+    public partial class TestDBEntities : DbContext
     {
-        public db1Entities()
-            : base("name=db1Entities")
+        public TestDBEntities()
+            : base("name=TestDBEntities")
         {
         }
     

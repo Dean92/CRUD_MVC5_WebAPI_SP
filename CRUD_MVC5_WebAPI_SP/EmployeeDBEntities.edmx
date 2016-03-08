@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="db1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="TestDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <Function Name="ADDNewEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Emp_Name" Type="varchar" Mode="In" />
           <Parameter Name="Email" Type="varchar" Mode="In" />
@@ -28,13 +28,13 @@
           <Parameter Name="Country" Type="varchar" Mode="In" />
           <Parameter Name="ManagerName" Type="varchar" Mode="In" />
         </Function>
-        <EntityContainer Name="db1ModelStoreContainer" />
+        <EntityContainer Name="TestDBModelStoreContainer" />
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="db1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="db1Entities" annotation:LazyLoadingEnabled="true" >
+      <Schema Namespace="TestDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="TestDBEntities" annotation:LazyLoadingEnabled="true" >
           <FunctionImport Name="ADDNewEmployee">
             <Parameter Name="Emp_Name" Mode="In" Type="String" />
             <Parameter Name="Email" Mode="In" Type="String" />
@@ -46,7 +46,7 @@
           <FunctionImport Name="DeleteEmployee">
             <Parameter Name="Emp_ID" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="ReadAllEmployee" ReturnType="Collection(db1Model.ReadAllEmployee_Result)">
+          <FunctionImport Name="ReadAllEmployee" ReturnType="Collection(TestDBModel.ReadAllEmployee_Result)">
             <Parameter Name="Emp_Name" Mode="In" Type="String" />
             <Parameter Name="Country" Mode="In" Type="String" />
             <Parameter Name="ManagerName" Mode="In" Type="String" />
@@ -71,12 +71,12 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="db1ModelStoreContainer" CdmEntityContainer="db1Entities" >
-          <FunctionImportMapping FunctionImportName="ADDNewEmployee" FunctionName="db1Model.Store.ADDNewEmployee" />
-          <FunctionImportMapping FunctionImportName="DeleteEmployee" FunctionName="db1Model.Store.DeleteEmployee" />
-          <FunctionImportMapping FunctionImportName="ReadAllEmployee" FunctionName="db1Model.Store.ReadAllEmployee">
+        <EntityContainerMapping StorageEntityContainer="TestDBModelStoreContainer" CdmEntityContainer="TestDBEntities" >
+          <FunctionImportMapping FunctionImportName="ADDNewEmployee" FunctionName="TestDBModel.Store.ADDNewEmployee" />
+          <FunctionImportMapping FunctionImportName="DeleteEmployee" FunctionName="TestDBModel.Store.DeleteEmployee" />
+          <FunctionImportMapping FunctionImportName="ReadAllEmployee" FunctionName="TestDBModel.Store.ReadAllEmployee">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="db1Model.ReadAllEmployee_Result">
+              <ComplexTypeMapping TypeName="TestDBModel.ReadAllEmployee_Result">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
@@ -85,7 +85,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UpdateEmployee" FunctionName="db1Model.Store.UpdateEmployee" />
+          <FunctionImportMapping FunctionImportName="UpdateEmployee" FunctionName="TestDBModel.Store.UpdateEmployee" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -25,7 +25,7 @@ namespace CRUD_MVC5_WebAPI_SP.Controllers
         }
 
         [HttpGet]
-        public void updateEmployee(int? emp_ID, string emp_Name, string email, string country string managerName)
+        public void updateEmployee(int? emp_ID, string emp_Name, string email, string country, string managerName)
         {
             obj.UpdateEmployee(emp_ID, emp_Name, email, country, managerName);
         }
