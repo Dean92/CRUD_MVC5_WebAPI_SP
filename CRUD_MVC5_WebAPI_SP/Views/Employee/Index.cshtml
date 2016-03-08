@@ -1,0 +1,144 @@
+﻿<html data-ng-app="RESTClientModule">
+@{
+    ViewBag.Title = "Manage Employee Information Using MVC 5 , WebAPI2, AngularJS with Stored Procedure";
+}
+<body data-ng-controller="AngularJs_ManageEmployeeInfoController">
+    <table style='width: 99%; background-color:skyblue; text-align:center;'>
+        <tr ng-show="searchEmployee">
+            <td>
+                <table style="background-color:crimson; border: solid 4px green; padding: 5px; width: 99%; color:white;" cellpadding="2" cellspacing="2">
+                    <tr>
+                        <td>
+                            <b>Name</b>
+                            : <input type="text" name="txtEmpName" ng-model="empNameSearch" value="" />
+                        </td>
+                        <td>
+                            <b> Country </b> :
+                            <input type="text" name="txtCountry" ng-model="empCountrySearch" />
+                        </td>
+                        <td>
+                            <b> Manager Name </b> :
+                            <input type="text" name="txtManager" ng-model="ManagerNameSearch" />
+                        </td>
+                        <td>
+                            <input type="submit" value="Search Employee" ng-click="searchEmp()" />
+                        </td>
+                        <td align="right">
+                            <input type="button" value="Add New Employee" ng-click="AddEmployeeForm()" />
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr ng-show="ManageEMP_Info">
+            <td>
+                <table style="border:solid 4px blue; background-color:orange; width:100%;">
+                    <tr>
+                        <td width="20"></td>
+                        <td valign="top">
+                            <form novalidate name="f1" ng-submit="saveDetails()">
+                                <table style="color:#0d3d2b; font-weight:bold; font-size:12pt; text-align:right;">
+                                    <tr>
+                                        <td>
+                                            Employee ID :
+                                        </td>
+                                        <td>
+                                            <input type="text" name="txtEmpId" ng-model="EmpIds" value="0" style="background-color:tan" readonly />
+                                        </td>
+                                        <td>
+                                            Name :
+                                        </td>
+                                        <td>
+                                            <input type="text" name="txtEmpName" ng-model="empName" placeholder=" Employee Name..." required />
+                                            <br />
+                                            <span class="error" ng-show="(f1.file.$dirty || IsFormSubmitted) && f1.txtEmpName.$error.required">Name required!</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Email :
+                                        </td>
+                                        <td>
+                                            <input type="text" name="txtEmail" ng-model="empEmail" placeholder=" Email..." required />
+                                            <br />
+                                            <span class="error" ng-show="(f1.file.$dirty || IsFormSubmitted) && f1.txtEmail.$error.required">Email Required!</span> 
+                                        </td>
+                                        <td>
+                                            Country :
+                                        </td>
+                                        <td>
+                                            <input type="text" name="txtCountry" ng-model="empCountry" placeholder=" Country ..." required />
+                                            <br />
+                                            <span class="error" ng-show="(f1.file.$dirty || IsFormSubmitted) && f1.txtCountry.$error.required">Country required!</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Manager Name:
+                                        </td>
+                                        <td>
+                                            <input type="text" name="txtManager" ng-model="empManager" placeholder=" Manager ..." required />
+                                            <br />
+                                            <span class="error" ng-show="(f1.file.$dirty || IsFormSubmitted) && f1.txtManager.$error.required">Manager Name required!</span> 
+                                        </td>
+                                        <td colspan="2">
+                                            <input type="submit" value="Save Employee" style="color:#336699" required />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </form>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr ng-show="ListEmployee">
+            <td>
+                <table style="width:100%">
+                    <tr style="background-color:darkgreen; color:white; font-weight:bold;">
+                        <td width="120px" align="center">Name</td>
+                        <td width="120" align="center">Email</td>
+                        <td width="80" align="center">Country</td>
+                        <td width="200" align="center">Manager Name</td>
+                        <td width="40" align="center">Edit</td>
+                        <td width="40" align="center">Delete</td>
+                    </tr>
+                    <tbody data-ng-repeat="emp in Employees">
+                        <tr style="background-color:whitesmoke; font-family:Cambria, Cambria, Cochin, Georgia, Times, Times New Roman, serif; font-size:11pt; color:midnightblue; text-align:left; padding-left:10px;">
+                            <td style="width:120px;">
+                                {{emp.Name}}
+                            </td>
+                            <td>
+                                {{emp.Email}}
+                            </td>
+                            <td>
+                                {{emp.Country}}
+                            </td>
+                            <td>
+                                {{emp.ManagerName}}
+                            </td>
+                            <td align="center">
+                                <span style="color:#9F000F;">
+                                    <input type="submit" value="Edit" ng-click="editEmployeeInfo(emp.ID,emp.Name,emp.Email,emp.Country,emp.ManagerName)" />
+                                </span>
+                            </td>
+                            <td align="center">
+                                <span style="color:#9F000F;">
+                                    <input type="submit" value="Delete" ng-click="Employee_Delete(emp.ID,emp.Name)" />
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+
+<script src="~/Scripts/angular-animate.js"></script>
+<script src="~/Scripts/angular.js"></script>
+<script src="~/Scripts/angular.min.js"></script>
+<script src="~/Scripts/angular-animate.min.js"></script>
+<script src="~/Scripts/MyScripts/controller.js"></script>
+
